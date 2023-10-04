@@ -63,13 +63,16 @@ second = data[N-2]
 result = 0
 
 while True:
+    # Add FIRST K times
     for i in range(K):
         if M == 0:
             break
         result += first
         M -= 1
+    # Break if no need for adding second
     if M == 0:
         break
+    # Add SECOND once
     result += second
     M -= 1
 
