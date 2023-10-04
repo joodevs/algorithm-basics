@@ -50,3 +50,32 @@ print(count)
 # 어떤 코딩 테스트 문제를 만났을 때, 바로 문제 유형을 파악하기 어렵다면 그리디 알고리즘을 의심하고
 # 문제를 해결할 수 있는 탐욕적인 해결법이 존재하는지 고민해보고 불가하다면 다이나믹 프로그래밍이나
 # 그래프 알고리즘 등으로 해결할 수 있는지를 재차 고민해보는 것도 한 방법이다.
+
+# 예제 3-2: 큰 수의 법칙
+
+N, M, K = map(int, input().split())
+data = list(map(int, input().split()))
+
+data.sort()
+first = data[N-1]
+second = data[N-2]
+
+result = 0
+
+while True:
+    for i in range(K):
+        if M == 0:
+            break
+        result += first
+        M -= 1
+    if M == 0:
+        break
+    result += second
+    M -= 1
+
+print(result)
+
+# 5 8 3
+# 2 4 5 4 6
+
+# 46
