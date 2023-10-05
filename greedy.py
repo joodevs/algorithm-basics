@@ -53,32 +53,99 @@ print(count)
 
 # 예제 3-2: 큰 수의 법칙
 
-N, M, K = map(int, input().split())
+# 문제: 다양한 수로 이루어진 배열이 있을 때 주어진 수들을 M번 더하여 가장 큰 수를 만드는데
+#      같은 수가 연속해서 K번을 초과하여 더해질 수 없는 것이 특징이다
+
+# 예:  n, m, k = 5, 8, 3
+#     data = [2, 4, 5, 4, 6]
+#     output: 46
+
+# 전략:
+# 1. Receive ints n, m, k separated by spaces
+# 2. Receive a list of ints
+# 3. Sort data from largest to smallest
+# 4. Define the largest two ints
+# 5. Add the largest int 'k' times using for loop
+# 6. When m = 0, break the loop
+# 7. If m = 0 after the loop, break while loop
+# 7. When the loop is done, add second largest once
+# 8. Decrease m by 1
+
+n, m, k = map(int, input().split())
 data = list(map(int, input().split()))
 
-data.sort()
-first = data[N-1]
-second = data[N-2]
+sum = 0
 
-result = 0
+data.sort()
+first = data[n-1]
+second = data[n-2]
 
 while True:
-    # Add FIRST K times
-    for i in range(K):
-        if M == 0:
+    for i in range(k):
+        if m==0:
             break
-        result += first
-        M -= 1
-    # Break if no need for adding second
-    if M == 0:
+        sum += first
+        m -= 1
+    if m == 0:
         break
-    # Add SECOND once
-    result += second
-    M -= 1
+    sum += second
+    m -= 1
 
-print(result)
+print(sum)
 
+# Input:
 # 5 8 3
 # 2 4 5 4 6
 
+# Output:
 # 46
+
+# Alternate (Better) Method:
+# Calculate the number of times that the largest is added
+
+n, m, k = map(int, input().split())
+data = list(map(int, input().split()))
+
+data.sort()
+first = data[n-1]
+second = data[n-2]
+
+count = int(m / (k + 1)) * k + (m % (k + 1))
+
+sum = 0
+sum += count * first
+sum += (m - count) * second
+
+print(sum)
+
+# 예제 3-3: 숫자 카드 게임
+# 문제: N x M 행렬로 놓아진 카드들 중 다음과 같은 룰에 따라 가장 큰 한 숫자를 뽑는다
+# 1. 뽑고자 하는 행에 포함된 카드들 중 가장 숫자가 낮은 카드를 뽑아야 한다.
+# 2. 선택된 행에 포함된 카드들 중 가장 숫자가 낮은 카드를 뽑는다.
+# 3. 따라서 처음에 카드를 골라낼 행을 선택할 때, 이후에 해당 행에서 가장 숫자가 낮은 카드를
+#    뽑을 걳을 고려하여 최종적으로 가장 높은 숫자의 카드를 뽑을 수 있도록 전략을 세운다.
+
+# 전략:
+# 1. Get integers N, M and each row
+# 2. Iterate through each row and find the min
+# 3. Find the largest minimum value
+
+n, m = map(int, input().split())
+
+result = 0
+
+for i in range(n):
+    data = list(map(int, input().split()))
+    minVal = min(data)
+    result = max(result, minVal)
+
+print(result)
+
+# Input:
+# 3 3
+# 3 1 2
+# 4 1 4
+# 2 2 2
+
+# Output:
+# 2
