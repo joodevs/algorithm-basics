@@ -149,3 +149,72 @@ print(result)
 
 # Output:
 # 2
+
+# 예제 3-4: 1이 될 때까지
+# 문제: 어떠한 수 N이 1이 될 때까지 다음의 두 과정 중 하나를 반복적으로 선책하여 수행하려고 한다.
+#      단, 두 번째 연산은 N이 K로 나누어떨어질 때만 선택할 수 있다.
+#      1. N에서 1을 뺀다.
+#      2. N을 K로 나눈다.
+
+# 전략:
+# 1. Receive ints k and n & set a counter = 0
+# 2. Use a while loop (while True, continue computation, break if N = 1)
+# 3. Use if statement to see if N is divisible by K (N % K = 0)
+# 4. If so, divide N by K and increase counter by 1
+# 5. Elif, subtract N by 1 and increase counter by 1
+# 6. When the while loop breaks, print counter
+
+# 내 답안
+n, k = map(int, input().split())
+counter = 0
+
+while True:
+    if n == 1:
+        break
+    elif n % k == 0:
+        n = n / k
+        counter += 1
+    else:
+        n -= 1
+        counter += 1
+
+print(counter)
+
+# 모범답안
+n, k = map(int, input().split())
+counter = 0
+
+while n >= k:
+    while n % k != 0:
+        n -= 1
+        counter += 1
+        n //= k
+        counter += 1
+
+while n > 1:
+    n -= 1
+    result += 1
+
+print(result)
+
+# While both of these answers make sense, they are not really scalable.
+# It is better to subtract in chunk until N becomes a multiple of K
+
+n, k = map(int, input().split())
+counter = 0
+
+while True:
+    # Subtract 1 until N is K's multiple
+    target = (n // k) * k
+    n = target
+    counter += (n - target)
+    # ---- treat as a separate loop
+    # Escape when N is not divisible anymore
+    if n < k:
+        break
+    # divide by K
+    n //= k
+    counter += 1
+
+counter += (n - 1)
+print(counter)
