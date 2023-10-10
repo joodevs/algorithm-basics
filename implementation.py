@@ -45,3 +45,26 @@ for i in range(n + 1):
                 count += 1
 
 print(count)
+
+# 예제 4-3: 왕실의 나이트
+# 문제: 8 x 8 체스판에서 나이트는 2 x 1 만큼 이동할 수 있다.
+#      나이트의 현 위치가 주어졌을 때 이동할 수 있는 경로의 경우의 수를 출력하라.
+
+# Receive current position
+pos = input()
+row = int(pos[1])
+col = int(ord(pos[0]) - ord('a')) + 1
+
+# Define possible movements
+steps = [(-2, -1), (-2, 1), (2, -1), (2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2)]
+
+# Check if movement is possible
+counter = 0
+for step in steps:
+    next_row = row + step[0]
+    next_col = col + step[1]
+    # Increase counter if possible
+    if next_row >= 1 and next_row <= 8 and next_col >= 1 and next_col <= 8:
+        counter += 1
+
+print(counter)
