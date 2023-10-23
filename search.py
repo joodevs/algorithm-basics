@@ -30,3 +30,6 @@ stack.pop()
 
 print(stack)
 print(stack[::-1])
+
+# [5, 2, 3, 1]
+# [1, 3, 2, 5]
