@@ -203,28 +203,28 @@ def bfs(graph, start, visited):
     while queue:
         # Pull one node from queue and print
         v = queue.popleft()
-        print(v, end='')
+        print(v, end=' ')
         # Insert unvisited elements adjacent to the node
         for i in graph[v]:
             if not visited[i]:
                 queue.append(i)
                 visited[i] = True
 
-    # Express graph as adjacency list
-    graph = [
-        [],
-        [2, 3, 8],
-        [1, 7],
-        [1, 4, 5],
-        [3, 5],
-        [3, 4],
-        [7],
-        [2, 6, 8],
-        [1, 7]
-    ]
+# Express graph as adjacency list
+graph = [
+    [],
+    [2, 3, 8],
+    [1, 7],
+    [1, 4, 5],
+    [3, 5],
+    [3, 4],
+    [7],
+    [2, 6, 8],
+    [1, 7]
+]
 
-    # Initiate the 'visited' list
-    visited = [False] * 9
+# Initiate the 'visited' list
+visited = [False] * 9
 
-    # Call BFS
-    bfs(graph, 1, visited)
+# Call BFS
+bfs(graph, 1, visited)
