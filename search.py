@@ -189,3 +189,42 @@ print(graph)
 # 너비 우선 탐색 알고리즘인 BFS는 큐 자료구조에 기초한다는 점에서 구현이 간단하다.
 # 실제로 구현함에 있어 앞서 언급한 대로 deque 라이브러리를 사용하는 것이 좋으며 탐색을 수행함에 있어 O(N) 이 소요.
 # 수행시간은 DFS보다 좋은 편이라는 장점이 있다.
+
+# BFS Example:
+from collections import deque
+
+# Define BFS Method
+def bfs(graph, start, visited):
+    # Use deque library for simulating Queue
+    queue = deque([start])
+    # Mark the present node visited
+    visited[start] = True
+    # Repeat until queue is empty
+    while queue:
+        # Pull one node from queue and print
+        v = queue.popleft()
+        print(v, end='')
+        # Insert unvisited elements adjacent to the node
+        for i in graph[v]:
+            if not visited[i]:
+                queue.append(i)
+                visited[i] = True
+
+    # Express graph as adjacency list
+    graph = [
+        [],
+        [2, 3, 8],
+        [1, 7],
+        [1, 4, 5],
+        [3, 5],
+        [3, 4],
+        [7],
+        [2, 6, 8],
+        [1, 7]
+    ]
+
+    # Initiate the 'visited' list
+    visited = [False] * 9
+
+    # Call BFS
+    bfs(graph, 1, visited)
