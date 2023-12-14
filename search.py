@@ -196,6 +196,7 @@ from collections import deque
 # Define BFS Method
 def bfs(graph, start, visited):
     # Use deque library for simulating Queue
+    # A list goes into the deque function so [1]
     queue = deque([start])
     # Mark the present node visited
     visited[start] = True
