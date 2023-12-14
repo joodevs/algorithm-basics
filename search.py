@@ -229,3 +229,46 @@ visited = [False] * 9
 
 # Call BFS
 bfs(graph, 1, visited)
+
+
+# Example 2
+
+from collections import deque
+
+# Receive map dimensions n, m
+n, m = map(int, input().split())
+
+# Receive map info
+graph = []
+for i in n:
+    graph.append(list(map(int, input().split())))
+
+# Define directional increments
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+# Define DFS function
+def dfs(x, y):
+    queue = deque()
+    queue.append(x, y)
+    # Repeat until queue is empty
+    x, y = queue.popleft()
+    # Check four directions
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        # Ignore if out of map
+        if nx < 0 or ny < 0 or nx >= n >= m:
+            continue
+        # Ignore if wall
+        if graph[nx][ny] == 0:
+            continue
+        # Record if unvisited
+        if graph[nx][ny] == 1:
+            graph[nx][ny] = graph[x][y] + 1
+            queue.append((nx, ny))
+    # Return distnace
+    return graph[n-1][m-1]
+
+# Print BFS result
+print(bfs(0, 0))
