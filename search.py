@@ -190,6 +190,39 @@ print(graph)
 # 실제로 구현함에 있어 앞서 언급한 대로 deque 라이브러리를 사용하는 것이 좋으며 탐색을 수행함에 있어 O(N) 이 소요.
 # 수행시간은 DFS보다 좋은 편이라는 장점이 있다.
 
+# DFS Example:
+# graph: adjacency list
+# v: first node (usually 1)
+# visited: list of booleans
+def dfs(graph, v, visited):
+    # Mark the current node as visited
+    visited[v] = True
+    print(v, end=' ')
+    # Recursively visit the node connected to current node
+    for i in graph[v]:
+        if not visited[i]:
+            dfs(graph, i, visited)
+
+# Express info about the nodes connected to each node
+graph = [
+    [],
+    [2, 3 8]
+    [1, 7]
+    [1, 4, 5]
+    [3, 5]
+    [3, 4]
+    [7],
+    [2, 6, 8]
+    [1, 7]
+]
+# Express info about visited infor for each node
+visited = [False] * 9
+
+# Call DSF
+dfs(graph, 1, visited)
+
+# 1 2 7 6 8 3 4 5
+
 # BFS Example:
 from collections import deque
 
