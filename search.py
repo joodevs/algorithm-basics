@@ -148,7 +148,7 @@ print(graph)
 
 # Adjacency List:
 
-# Print a three-row two-dimensional matrix
+# Print a 3 x 1 matrix
 graph = [[] for _ in range(3)]
 
 # Save info (node, distance) of the node(s) connected to node 0
