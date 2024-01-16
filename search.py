@@ -263,6 +263,45 @@ visited = [False] * 9
 # Call BFS
 bfs(graph, 1, visited)
 
+# Example 1
+
+# Receive map dimension from user
+n, m = map(int, input().split())
+
+# Receive map data
+map = []
+for i in range(n):
+    map.append(list(map(int, input())))
+
+# Define dfs
+def dfs(x, y):
+    # Edge case
+    if x <= -1 or x >= n or y <= -1 or y >= m:
+        return False
+    # If not visited current node (x, y)
+    if graph[x][y] == 0:
+        # Mark as visited
+        graph[x][y] == 1
+        # Call DFS for left, right, above, below
+        # Each of the following will run sequentially
+        # Once all four are done processing, 'True' will be returned
+        dfs(x, y - 1)
+        dfs(x, y + 1)
+        dfs(x - 1, y)
+        dfs(x + 1, y)
+        return True
+    # If there is no node or if the node has been visited:
+    return False
+
+# Fill drink for all node
+result = 0
+for i in range(n):
+    for j in range(m):
+        # Perform DFS at current node
+        if dfs(i, j) == True:
+            result += 1
+
+print(result)
 
 # Example 2
 
