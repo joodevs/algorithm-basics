@@ -389,3 +389,20 @@ for i in range(len(array)):
 # the number of "rounds" is (N - 1), the number of iterations for the outer loop
 # Bcause of this quadratic nature, the time complexity of selection sort is n^2 as found below:
 # (N - 1) + (N - 2) + ... + 2 + 1 = N * (N - 1) / 2
+
+
+# 삽입 정렬
+# 다음 코드로 충분히 셜명이 되며, 시간 복잡도는 O(N^2) 이다.
+# 다만, 선택정렬의 시간 복잡도가 항상 O(N^2) 인 것에 반해, 삽입 정렬은 최선의 경우 O(N).
+# 거의 정렬되어 있는 상태로 입력이 주어지는 문제라면 삽입 정렬을 이용하는 것이 효율적.
+
+arry = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
+
+for i in range(1, len(array)):
+    for j in range(i, 0, -1):
+        if array[j] < array[j - 1]:
+            array[j], array[j - 1] = array[j - 1], array[j]
+        else:
+            break
+
+print(array)
