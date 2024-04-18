@@ -344,3 +344,48 @@ def dfs(x, y):
 
 # Print BFS result
 print(bfs(0, 0))
+
+
+# 정렬 (Sorting)
+
+# 정렬 (Sorting) 이란 데이터를 특정한 기준에 따라서 순서대로 나열하는 것을 뜻함.
+# 정렬 알고리즘은 이진탐색 (Binary Search) 의 전처리 과정이기도 함.
+
+# 정렬 알고리즘은 굉장히 다양한데, 이 중에서 많이 사용하는 것은:
+# - 선택 정렬 (Selection Sort)
+# - 삽입 정렬 (Insertion Sort)
+# - 퀵 정렬 (Quick Sort)
+# - 계수 정렬 (Counting Sort)
+
+# 보통 코딩테스트 문제에서 요구하는 조건에 따라 적절한 정렬 알고리즘이 공식처럼 사용되며,
+# 상황에 적절하지 못한 정렬 알고리즘을 이용하면 당연히 프로그램은 비효율적으로 동작.
+# 컴퓨터는 인간과는 다르게 데이터의 규칙성을 직관적으로 알 수 없으며, 어떻게 정렬을
+# 수행할지에 대한 과정을 소스코드로 작성하여 구체적으로 명시해야 한다.
+
+# 선택 정렬 (Selection Sort)
+# 정의: 데이터가 무작위로 여러 개 있을 때, 이 중에서 가장 작은 데이터를 선택해 맨 앞에 있는
+#      데이터와 바꾸고, 그다음 작은 데이터를 선택해 앞에서 두 번째 데이터와 바꾸는 과정을 반복
+#      이 과정은 (N - 1) 번 반복됨.
+
+# Example:
+array = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
+
+for i in range(len(array)):
+    min_index = i
+    # Find the real minimal index in the leftover array
+    for j in range(i + 1, len(array)):
+        if array[j] < array[min_index]:
+            # Re-iniate min_index
+            min_index = j
+    # Swap
+    array[i], array[min_index] = array[min_index], array[i]
+
+# 선택정렬의 시간 복잡도
+# 선택정렬은 N - 1 번 만큼 가장 작은 수를 찾아 맨 앞으로 보내야 한다. 또한, 매번 가장 작은 수를
+# 찾기 위해 비교 연산이 필요하다. 고로 연산 횟수는 N + (N - 1) + (N - 2) + ... + 2
+# The outer loop is responsible for setting the starting point for the inner loop.
+# The inner loop is responsible for iterating through the unsorted portion for comparison.
+# The comparison is done (N - 1) times at first, (N - 2) after that, .. 3, 2, and 1, and
+# the number of "rounds" is (N - 1), the number of iterations for the outer loop
+# Bcause of this quadratic nature, the time complexity of selection sort is n^2 as found below:
+# (N - 1) + (N - 2) + ... + 2 + 1 = N * (N - 1) / 2
