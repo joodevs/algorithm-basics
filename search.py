@@ -406,3 +406,77 @@ for i in range(1, len(array)):
             break
 
 print(array)
+
+
+# 퀵 정렬 (Quick Sort)
+
+# 퀵 정렬은 정렬 알고리즘 중 가장 많이 사용되는 알고리즘이다.
+# 퀵 정렬과 병합 정렬은 (merge sort) 는 대부분의 프로그래밍 언어에서
+# 정렬 라이브러리의 근간이 되는 알고리즘이기도 하다.
+
+# 퀵 정렬에서는 기준 (pivot) 을 설정하고 이 기준보다 큰 수와 작은 수를 교환함으로써 리스트를 반으로 나눈다.
+# Pivot을 설정하고 리스트를 분할하는 방법에 따라 여러 방식으로 구분되는데, Hoare Partition 이 대표적.
+
+array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
+
+def quick_sort(array):
+    # Return array if list contains less than 1 element
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    tail = array[1:]
+
+    left_side = [x for x in tail if x <= pivot]
+    right_side = [x for x in tail if x > pivot]
+
+    return quick_sort(left_side) + [pivot] + quick_sort[right_side]
+
+print(quick_sort(array))
+
+# # No List Comprehension
+# def quick_sort(array):
+#     if len(array) <= 1:
+#         return array
+#
+#     pivot = array[0]
+#     tail = array[1:]
+#
+#     left_side = []
+#     right_side = []
+#     for x in tail:
+#         if x <= pivot:
+#             left_side.append(x)
+#         else:
+#             right_side.append(x)
+#
+#     return quick_sort(left_side) + [pivot] + quick_sort(right_side)
+#
+#
+# # Example usage:
+# array = [3, 6, 8, 10, 1, 2, 1]
+# print("Sorted array:", quick_sort(array))
+
+array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
+
+def quick_sort(array, start, end):
+    if start >= end:
+        return
+    pivot = start
+    left = start + 1
+    right = end
+
+    while left <= right:
+        while left <= end and array[left] <= array[pivot]:
+            left += 1
+        while right >= start and array[right] >= pivot:
+            right -= 1
+        if left > right:
+            array[right], array[pivot] = array[pivot], array[right]
+        else:
+            array[left], array[right] = array[right], array[left]
+    quick_sort(array, start, right - 1)
+    quick_sort(array, right + 1, end)
+
+quick_sort(array, 0, len(array) - 1)
+print(array)
