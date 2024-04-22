@@ -226,3 +226,61 @@ print(result)
 # 3. 더 빠른 정렬이 필요한 문제:
 # - 퀵 정렬 기반의 정렬 기법으로는 풀 수 없으며 계수 정렬 등의 다른 정렬을 이용하거나
 #   문제에서 알려진 알고리즘의 구조적인 개선을 거쳐야 풀 수 있다.
+
+
+# Problem 1: 위에서 아래로
+# 첫째 줄에 수열에 속해 있는 수의 개수 N이 주어진다.
+# 둘째 줄부터 N + 1번째 줄까지 N개의 수가 입력된다.
+# 입력된 수들을 내림차순으로 정렬.
+
+n = int(input())
+
+array = []
+for i in range(n):
+    array.append(int(input()))
+
+array = sorted(array, reverse=True)
+
+for i in array:
+    print(i, end=' ')
+
+# Problem 2: 성적이 낮은 순서로 학생 출력하기
+# N명의 학생 정보가 있다. 학생 정보는 학생의 이름과 학생의 성적으로 구분된다.
+# 각 학생의 이름과 성적 정보가 주어졌을 때 성적이 낮은 순서대로 학생의 이름을 출력.
+
+# Receive N
+n = int(input())
+
+# Receive and store info of N studnets
+array = []
+for i in range(n):
+    input_data = input().split()
+    array.append((input_data[0], int(input_data[1])))
+
+# Sort
+def setting(data):
+    return data[1]
+
+result = sorted(array, key=setting)
+print(result)
+
+
+# Problem 3: 두 배열의 원소 교체
+# 동빈이는 두 개의 배열 A 와 B를 가지고 있다. 두 배열은 N개의 원소로 구성되어 있으며, 배열의 원소는 모두 자연수이다.
+# 동빈이는 최대 K번의 바궈치기 연산을 수행할 수 있는데, 바꿔치기 연산이란 배열 A에 있는 원소 하나와 배열 B에 있는 원소
+# 하나를 골라 두 원소를 서로 바꾸는 것을 말한다. 동빈이의 최종 목표는 배열 A의 모든 원소의 합이 최대가 되도록 하는 것.
+
+n, k = map(int, input().split())    # Receive N, K
+a = list(map(int, input().split()))  # Receive all elements of array A
+b = list(map(int, input().split()))  # Receive all elements of array B
+
+a.sort()
+b.sort(reverse=True)
+
+for i in range(k):
+    if a[i] < b[i]:
+        a[i], b[i] = b[i], a[i]
+    else:
+        break
+
+print(sum(a))
