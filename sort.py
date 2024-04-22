@@ -82,7 +82,7 @@ def quick_sort(array):
     left_side = [x for x in tail if x <= pivot]
     right_side = [x for x in tail if x > pivot]
 
-    return quick_sort(left_side) + [pivot] + quick_sort[right_side]
+    return quick_sort(left_side) + [pivot] + quick_sort(right_side)
 
 print(quick_sort(array))
 
@@ -114,7 +114,7 @@ print(quick_sort(array))
 
 array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
 
-def quick_sort(array, start, end):
+def quick_sort_longer(array, start, end):
     if start >= end:
         return
     pivot = start
@@ -124,16 +124,20 @@ def quick_sort(array, start, end):
     while left <= right:
         while left <= end and array[left] <= array[pivot]:
             left += 1
-        while right >= start and array[right] >= pivot:
+        while right > start and array[right] >= array[pivot]:
             right -= 1
         if left > right:
-            array[right], array[pivot] = array[pivot], array[right]
+            break
         else:
             array[left], array[right] = array[right], array[left]
-    quick_sort(array, start, right - 1)
-    quick_sort(array, right + 1, end)
+
+    # Swap pivot into its correct position after pointers have crossed
+    array[right], array[pivot] = array[pivot], array[right]
+
+    quick_sort_longer(array, start, right - 1)
+    quick_sort_longer(array, right + 1, end)
 0
-quick_sort(array, 0, len(array) - 1)
+quick_sort_longer(array, 0, len(array) - 1)
 print(array)
 
 # 퀵 정렬의 시간 복잡도
@@ -142,3 +146,39 @@ print(array)
 # 이유는 다른 정렬 방식들과 달리 N이 늘어날 수록 분할이 이루어지는 횟수가 기하급수적으로 감소하기 때문.
 
 # 계수 정렬 (Count Sort)
+# 계수 정렬 알고리즘은 특정한 조건이 부합할 때만 사용할 수 있지만, 매우 빠른 정렬 알고리즘이다.
+# 모든 데이터가 양의 정수이고 데이터의 개수가 N 이며 데이터 중 최댓값이 K 일 때, 계수 정렬은
+# 최악의 경우에도 수행 시간 O(N + K) 를 보장한다.
+
+# 과정은 다음과 같다:
+
+# Example
+# Assume all elements >= 0
+array = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
+
+# Initiate a list encompassing the entire range
+count = [0] * (max(array) + 1)
+
+# Update count
+for i in range(len(array)):
+    count[array[i]] += 1
+
+# Visit each entry of count and print header as many times
+for i in range(len(count)):
+    for j in range(count[i]):
+        print(i, end=' ')
+
+# 계수 정렬의 시간 복잡도
+# 모든 데이터가 양의 정수이고 데이터의 개수가 N 이며 데이터 중 최댓값이 K 일 때, 계수 정렬은
+# 최악의 경우에도 수행 시간 O(N + K) 를 보장한다. 계수 정렬은 앞에서부터 데이터를 하나씩
+# 확인하면서 리스트에서 적절한 인덱스의 값을 1씩 증가시킬 뿐만 아니라, 추후에 리스트의 각
+# 인덱스에 해당하는 값들을 확인할 때 데이터 중 최댓값의 크기만큼 반복을 수행해야 하기 때문.
+# 따라서 범위만 한정되어 있다면 효과적으로 사용할 수 있으며 항상 빠르게 동작한다. 사실상
+# 현존하는 정렬 알고리즘 중에서 기수 정렬 (Radix Sort) 과 더불어 가장 빠르다 할 수 있다.
+
+# 계수 정렬의 공간 복잡도
+# 계수 정렬은 때에 따라 심각한 비효율성을 초래할 수 있다. 예를 들어 데이터가 0과 999,999,
+# 단 2개만 존재한다 해도 리스트의 크기가 100만이 되도록 선언해야 함.또 다른 예로 성적의 경우
+# 100점을 맞은 학생이 여럿일 수 있기에 계수 정렬이 효과적이다. 반면, 퀵 정렬은 일반적인 경우에
+# 평균적으로 빨리 동작하기에 데이텅의 특성을 파악하기 어렵다면 퀵 정렬을 이용하는 것이 유리함.
+# 다시 말해 계수 정렬은 데이터의 크기가 한정되어 있고, 데이터의 크기가 많이 중복되어 있을 수록 류이.
