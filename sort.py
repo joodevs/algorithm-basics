@@ -136,7 +136,7 @@ def quick_sort_longer(array, start, end):
 
     quick_sort_longer(array, start, right - 1)
     quick_sort_longer(array, right + 1, end)
-0
+
 quick_sort_longer(array, 0, len(array) - 1)
 print(array)
 
@@ -144,6 +144,7 @@ print(array)
 # 선택 정렬과 삽입 정렬은 최악의 경우에도 항상 시간 복잡도 O(N^2) 을 보장하는 반면, 뷕 정렬의 평균 시간
 # 복잡도는 O(NlogN) 이다. 앞서 다루었던 두 정렬 알고리즘에 비해 매운 빠른 편.
 # 이유는 다른 정렬 방식들과 달리 N이 늘어날 수록 분할이 이루어지는 횟수가 기하급수적으로 감소하기 때문.
+
 
 # 계수 정렬 (Count Sort)
 # 계수 정렬 알고리즘은 특정한 조건이 부합할 때만 사용할 수 있지만, 매우 빠른 정렬 알고리즘이다.
