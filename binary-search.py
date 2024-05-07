@@ -110,6 +110,8 @@ print(input_data)
 
 
 # 실전 문제 - 부품 찾기
+
+# 이진 탐색
 def binary_search(array, target, start, end):
     while start <= end:
         mid = (start + end) // 2
@@ -131,6 +133,22 @@ x = list(map(int, input().split()))
 for i in x:
     result = binary_search(array, i, 0, n - 1)
     if result != None:
+        print('yes', end=' ')
+    else:
+        print('no', end=' ')
+
+# 계수 정렬
+n = int(input())
+array = [0] * 1000001
+
+for i in input().split():
+    array[int(i)] = 1
+
+m = int(input())
+x = list(map(int, input().split()))
+
+for i in x:
+    if array[i] == 1:
         print('yes', end=' ')
     else:
         print('no', end=' ')
