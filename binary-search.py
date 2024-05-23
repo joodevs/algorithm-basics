@@ -175,3 +175,35 @@ for i in x:
         print('yes', end=' ')
     else:
         print('no', end=' ')
+
+
+# 실전 문제 - 떡볶이 떡 만들기
+# 떡볶이를 만드는ㄷ데 떡의 길이가 일정하지 않다. 절단기에 높이를 설정하면 떡을 한 번에 절단하기에
+# 높이가 이보다 긴 떡의 초과된 부분은 잘릴 것이고 넞은 떡은 잘리지 않는다.
+# 이때 잘린 부분의 합이 손님이 요청한 값과 같게 하는 높이의 최댓값을 구하는 프로그램을 작성하시오.
+
+# Receive # of tteok (n) and required length (l)
+n, l = list(map(int, input().split(' ')))
+# Receive length info
+lengths = list(map(int, input().split(' ')))
+
+# Set start and end points for binary search
+start = 0
+end = max(array)
+
+# Binary search
+result = 0
+while(start <= end):
+    sum = 0
+    mid = (start + end) // 2
+    for length in lengths:
+        if length > mid:
+            sum += length - mid
+    if sum < l:
+        end = mid - 1
+    else:
+        result = mid
+        start = mid + 1
+
+# Print result
+print(result)
