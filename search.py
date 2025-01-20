@@ -206,7 +206,7 @@ def dfs(graph, v, visited):
 # Express info about the nodes connected to each node
 graph = [
     [],
-    [2, 3 8]
+    [2, 3, 8]
     [1, 7]
     [1, 4, 5]
     [3, 5]
